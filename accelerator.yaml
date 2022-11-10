@@ -1,0 +1,39 @@
+
+accelerator:
+  name: "Test Dynamic Parameters"
+  description: Mock accelerator to test dynamic parameters
+  types:
+    - name: Task
+      struct:
+        - name: title
+          label: Title
+          description: 'Lorem Ipsum'
+          required: true
+        - name: onlyDigits
+          description: 'Only digits'
+          label: 'Only Digits'
+          validationRegex: "^\\d+$"
+        - name: choice
+          description: "select field"
+          inputType: "select"
+          choices:
+          - text: "Choice 1"
+            value: "choice-1"
+          - text: "Choice 2"
+            value: "choice-2"
+          - text: "Choice 3"
+            value: "choice-3"
+        - name: "dependant"
+          label: "Dependant"
+          dependsOn:
+            name: choice
+            value: choice-2
+
+  options:
+    - name: Task
+      dataType: Task
+    - name: Tasks
+      label: Task
+      dataType: [Task]
+    - name: onlyDigits
+      validationRegex: "^\\d+$"
